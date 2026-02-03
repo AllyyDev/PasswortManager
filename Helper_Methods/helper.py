@@ -8,3 +8,5 @@ def validate_password_search(password: str, user):
             wahl = menu.passwort_verwaltung()
         else:
             print("Passwort nicht gefunden.")
+
+    return wahl or None
