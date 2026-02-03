@@ -1,7 +1,7 @@
 import os, json, hashlib
 
-if os.path.exists("database.json"):
-    with open("database.json", "r") as f:
+if os.path.exists("../database.json"):
+    with open("../database.json", "r") as f:
         data = json.load(f)
 else:
     data = {"users": []}
