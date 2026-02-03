@@ -1,4 +1,5 @@
-import menu, login, helper
+from Helper_Methods import helper, login, menu
+
 
 def main():
     username, master_password = menu.login_menu()
