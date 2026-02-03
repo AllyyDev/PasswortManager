@@ -1,17 +1,34 @@
-import os, json, hashlib
+import hashlib
 
-if os.path.exists("../database.json"):
-    with open("../database.json", "r") as f:
-        data = json.load(f)
-else:
-    data = {"users": []}
+def login(data: dict, username: str, password: str) -> dict:
+    """
+    Does a login attempt with given credentials.
 
-def login(username: str, password: str):
-    hashed_password = passwort_hash(password)
+    Args:
+        username (str): Username
+        password (str): Password
+
+    Returns:
+        dict: App data dictionary
+        :param password:
+        :param username:
+        :param data:
+    """
+    hashed_passwort = passwort_hash(password)
     for user in data["users"]:
-        if user["accountName"] == username and user["masterPassword"] == hashed_password:
+        if user["accountName"] == username and user["masterPassword"] == hashed_passwort:
             return user
+
     return None
 
-def passwort_hash(password: str):
+def passwort_hash(password: str) -> str:
+    """
+    Generates a hash of a given password.
+
+    Args:
+        password (str): Password
+
+    Returns:
+        str: Hashed password
+    """
     return hashlib.sha256(password.encode()).hexdigest()
