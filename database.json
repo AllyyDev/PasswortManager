@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "accountName": "test",
+      "masterPassword": "b64948b8874112f7d65ab03502bf36963a7233af8c1a4e5a6b334e0c1d5ffcf2",
+      "credentials": [
+        {
+          "username": "gmail_account",
+          "password": "hashed_password_1"
+        },
+        {
+          "username": "github_account",
+          "password": "hashed_password_a"
+        }
+      ]
+    }
+  ]
+}
