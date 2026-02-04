@@ -24,7 +24,7 @@ def show_management_menu() -> int:
     """
     print("")
     print("(1) Passwort löschen")
-    print("(2) Menü\n--------------------\n")
+    print("(Any) Menü\n--------------------\n")
 
     inp = int(input("Wahl: "))
     return inp
@@ -39,7 +39,7 @@ def show_create_menu() -> int:
     print("")
     print("(1) Passwort eingeben")
     print("(2) Passwort generieren")
-    print("(3) Menü\n--------------------\n")
+    print("(Any) Menü\n--------------------\n")
 
     inp = int(input("Wahl: "))
     return inp
