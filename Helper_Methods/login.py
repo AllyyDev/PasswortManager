@@ -22,13 +22,4 @@ def login(data: dict, username: str, password: str) -> dict:
     return None
 
 def passwort_hash(password: str) -> str:
-    """
-    Generates a hash of a given password.
-
-    Args:
-        password (str): Password
-
-    Returns:
-        str: Hashed password
-    """
     return hashlib.sha256(password.encode()).hexdigest()

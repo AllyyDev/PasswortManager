@@ -1,24 +1,53 @@
 from Helper_Methods import menu
+import storage
 
 
-def validate_password_search(password: str, user):
-    wahl = None
+def validate_password_search(password: str, user: dict):
+    option = None
     for credential in user["data"]:
         if credential["password"] == password:
             print(f"Benutzername: {credential['username']}")
             print(f"Password: {credential['password']}")
-            wahl = menu.show_management_menu()
+            option = menu.show_management_menu()
         else:
             print("Passwort nicht gefunden.")
 
-    return wahl
+    return option
 
-def passwort_verwalten(wahl: int):
-    match wahl:
+def manage_password(option: int, password: str, user: dict):
+    deleted_user = None
+    match option:
         case 1:
-            pass
-        case 2:
-            pass
+            deleted_user = delete_password(password, user)
+        case _:
+            print("Menü wird aufgerufen")
 
-def passwort_loeschen():
-    pass
+    return deleted_user
+
+
+def delete_password(password: str, user):
+    for credential in user["data"]:
+        if password in credential["password"]:
+            del credential["password"]
+        else:
+            print("Fehler beim Löschen aufgetaucht!")
+
+    return user
+
+def save_user_to_db(db: dict, user: dict, username: str):
+    """
+
+    :param db:
+    :param user:
+    :param username:
+    :return:
+    """
+    for current_user in db["users"]:
+        if current_user["accountName"] == username:
+            for credential in current_user["data"]:
+                for user_data in user["data"]:
+                    if credential["username"] == user_data["username"]:
+                        current_user["data"].remove(credential)
+                        current_user["data"].append(user_data)
+                        storage.save(db)
+                        break

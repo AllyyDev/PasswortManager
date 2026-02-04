@@ -34,5 +34,3 @@ def check_password(password: str) -> Tuple[bool, str]:
         return False, f"Das Passwort muss Sonderzeichen beinhalten."
 
     return True, "Das Passwort ist sicher!"
-
-print(check_password("brh8W%M4~C&f]GGG"))
