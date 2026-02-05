@@ -1,7 +1,7 @@
 import storage
-from Helper_Methods import checker, menu
+from Helper_Methods import checker, generator, menu
 
-def manage_new_password(option: int):
+def manage_new_password(option: int) -> str:
     match option:
         case 1:
             password = menu.password_input()
@@ -12,11 +12,11 @@ def manage_new_password(option: int):
             print(message)
             return manage_new_password(option)
         case 2:
-            pass
+            return generator.generate_password()
         case _:
             print("Menü wird aufgerufen")
 
-    return None
+    return ""
 
 
 
