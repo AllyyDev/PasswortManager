@@ -1,4 +1,6 @@
-from Helper_Methods import helper, login, menu, display
+from Helper_Methods import (
+    removal, login, menu, display, addition
+)
 import storage
 
 
@@ -16,17 +18,20 @@ def main():
     while option != 4:
         match option:
             case 1:
-                password = menu.search_password()
-                password_option = helper.validate_password_search(password, user)
-                deleted_user_dict = helper.manage_password(password_option, password, user)
+                password = menu.password_input()
+                password_option = removal.validate_password_search(password, user)
+                deleted_user_dict = removal.manage_password(password_option, password, user)
 
                 if deleted_user_dict is not None:
-                    helper.save_user_to_db(json_db, deleted_user_dict, username)
+                    removal.save_user_to_db(json_db, deleted_user_dict, username)
             case 2:
                 display.display_all_passwords(user)
             case 3:
-                # Passwort Eingabe und Passwort Generierung müssen noch implementiert werden
-                menu.show_create_menu()
+                create_password_option = menu.show_create_menu()
+                password = addition.manage_new_password(create_password_option)
+
+                if password is not None:
+                    addition.save_password_to_database(json_db, password, username)
             case 4:
                 print("Anwendung wird geschlossen...")
                 break

@@ -9,7 +9,7 @@ def show_main_menu() -> int:
     print("(1) Passwort suchen")
     print("(2) Alle Passwörter")
     print("(3) Neues Passwort")
-    print("(4) Speichern/Exit")
+    print("(4) Exit")
     print("--------------------\n")
 
     inp = int(input("Wahl: "))
@@ -24,7 +24,7 @@ def show_management_menu() -> int:
     """
     print("")
     print("(1) Passwort löschen")
-    print("(Any) Menü\n--------------------\n")
+    print("(*) Menü\n--------------------\n")
 
     inp = int(input("Wahl: "))
     return inp
@@ -39,12 +39,12 @@ def show_create_menu() -> int:
     print("")
     print("(1) Passwort eingeben")
     print("(2) Passwort generieren")
-    print("(Any) Menü\n--------------------\n")
+    print("(*) Menü\n--------------------\n")
 
     inp = int(input("Wahl: "))
     return inp
 
-def search_password():
+def password_input():
     passwort = input("Passwort: ")
     return passwort
 

@@ -5,7 +5,7 @@ import storage
 def validate_password_search(password: str, user: dict):
     for credential in user["data"]:
         if credential["password"] == password:
-            print(f"Benutzername: {credential['username']}")
+            print(f"Benutzername: {credential['account_name']}")
             print(f"Password: {credential['password']}")
             option = menu.show_management_menu()
             return option
@@ -34,25 +34,25 @@ def delete_password(password: str, user):
     print("Fehler beim Löschen aufgetaucht!")
     return None
 
-def save_user_to_db(db: dict, user: dict, username: str):
+def save_user_to_db(db: dict, user: dict, account_name: str):
     """
     Saves a user to the JSON File
     :param db:
     :param user:
-    :param username:
+    :param account_name:
     :return:
     """
     target = next(
-        (u for u in db["users"] if u["accountName"] == username),
+        (u for u in db["users"] if u["accountName"] == account_name),
         None
     )
     if not target:
         return
 
-    existing = {c["username"]: c for c in target["data"]}
+    existing = {c["account_name"]: c for c in target["data"]}
 
     for new_cred in user["data"]:
-        existing[new_cred["username"]] = new_cred
+        existing[new_cred["account_name"]] = new_cred
 
     target["data"] = list(existing.values())
     storage.save(db)
