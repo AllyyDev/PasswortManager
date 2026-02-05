@@ -1,26 +1,52 @@
 import storage
 from Helper_Methods import checker, generator, menu
 
-def manage_new_password(option: int) -> str:
+def manage_new_password(option: int) -> tuple[str, str]:
+    """
+    Manages new credentials.
+
+    Returns:
+        username and password
+
+    :param option:
+    :return:
+    """
     match option:
         case 1:
+            username = input("Benutzername: ")
             password = menu.password_input()
             success, message = checker.check_password(password)
             if success:
                 print(message)
-                return password
+                return username, password
             print(message)
             return manage_new_password(option)
         case 2:
-            return generator.generate_password()
+            username = input("Benutzername: ")
+            password = generator.generate_password()
+
+            print("\n\nNeue Kredentiale:")
+            print("Benutzername: ", username)
+            print("Passwort: ", password )
+            print("\n------------------------------\n")
+            return username, password
         case _:
-            print("Menü wird aufgerufen")
+            print("Menü wird aufgerufen...\n\n")
 
-    return ""
+    return "", ""
 
 
 
-def save_password_to_database(db: dict, password: str, account_name: str):
+def save_password_to_database(db: dict, new_user: str, password: str, account_name: str):
+    """
+    Saves new credentials into database.
+    :param db:
+    :param new_user:
+    :param password:
+    :param account_name:
+    :return:
+    """
+
     target = next(
         (u for u in db["users"] if u["accountName"] == account_name),
         None
@@ -29,7 +55,7 @@ def save_password_to_database(db: dict, password: str, account_name: str):
         return
 
     new_creds = {
-        "username": "",
+        "username": new_user,
         "password": password
     }
 

@@ -20,19 +20,18 @@ def manage_password(option: int, password: str, user: dict) -> dict:
         case 1:
             deleted_user = delete_password(password, user)
         case _:
-            print("Menü wird aufgerufen")
+            print("Menü wird aufgerufen...\n\n")
 
     return deleted_user
 
 
 def delete_password(password: str, user: dict) -> dict:
-    for credential in user["data"]:
-        if password in credential["password"]:
-            credential["password"] = ""
-            return user
+    user["data"] = [
+        cred for cred in user["data"]
+        if cred["password"] != password
+    ]
 
-    print("Fehler beim Löschen aufgetaucht!")
-    return {}
+    return user
 
 def save_user_to_db(db: dict, user: dict, account_name: str):
     """
@@ -49,10 +48,5 @@ def save_user_to_db(db: dict, user: dict, account_name: str):
     if not target:
         return
 
-    existing = {c["username"]: c for c in target["data"]}
-
-    for new_cred in user["data"]:
-        existing[new_cred["username"]] = new_cred
-
-    target["data"] = list(existing.values())
+    target["data"] = user["data"]
     storage.save(db)

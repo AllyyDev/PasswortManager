@@ -28,10 +28,10 @@ def main():
                 display.display_all_passwords(user)
             case 3:
                 create_password_option = menu.show_create_menu()
-                password = addition.manage_new_password(create_password_option)
+                new_user, password = addition.manage_new_password(create_password_option)
 
                 if password is not None:
-                    addition.save_password_to_database(json_db, password, username)
+                    addition.save_password_to_database(json_db, new_user, password, username)
             case 4:
                 print("Anwendung wird geschlossen...")
                 break
