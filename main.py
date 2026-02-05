@@ -1,6 +1,5 @@
-from Helper_Methods import helper, login, menu
+from Helper_Methods import helper, login, menu, display
 import storage
-from Helper_Methods.helper import delete_password
 
 
 def main():
@@ -24,7 +23,7 @@ def main():
                 if deleted_user_dict is not None:
                     helper.save_user_to_db(json_db, deleted_user_dict, username)
             case 2:
-                pass # Abrufen aller Passwörter
+                display.display_all_passwords(user)
             case 3:
                 # Passwort Eingabe und Passwort Generierung müssen noch implementiert werden
                 menu.show_create_menu()
