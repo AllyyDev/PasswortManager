@@ -28,7 +28,7 @@ def manage_password(option: int, password: str, user: dict):
 def delete_password(password: str, user):
     for credential in user["data"]:
         if password in credential["password"]:
-            del credential["password"]
+            credential["password"] = ""
             return user
 
     print("Fehler beim Löschen aufgetaucht!")

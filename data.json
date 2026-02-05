@@ -9,11 +9,12 @@
                     "password": "5===l2h=`~a2Du>V"
                 },
                 {
-                    "username": "TestAccount"
+                    "username": "TestAccount",
+                    "password": "letmein"
                 },
                 {
                     "username": "test2",
-                    "password": "test"
+                    "password": ""
                 }
             ]
         }
